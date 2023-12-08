@@ -4,7 +4,7 @@
   
   Se quiser experimentar as funcionalidades sem baixar localmente o código pode utilizar o link abaixo para acessar o deploy da API: 
 
-  **[🚀 Link do Deploy]()** (  Em construção ...)
+  **[🚀 Link do Deploy](https://deploy-freela.onrender.com)** (  Em construção ...)
 
 
 ## 📖 Índice
@@ -70,7 +70,14 @@
    
 ## 🚏 Rotas
 
-### POST /:
+### <strong>POST /health:</strong> 
+Rota de autenticação para checar se o sistema está no ar e funcionando corretamente. 
+<details>
+<summary> <strong>Resposta esperada:</strong>  </summary>
+<strong>HTTP Status:</strong> 200 (OK). </br>
+<strong>Texto:</strong> "I'm OK!".
+
+</details>
    
 ## ⚙️ Como instalar ?
 
