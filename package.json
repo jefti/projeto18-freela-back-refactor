@@ -9,6 +9,7 @@
     "start": "prisma migrate deploy && node dist/src/server.js",
     "test": "dotenv -e .env.test prisma migrate deploy & dotenv -e .env.test jest -- -i",
     "test:coverage": "npm run test -- --coverage",
+    "migration:run": "prisma migrate deploy",
     "lint": "eslint .",
     "precommit": "lint-staged",
     "prepare": "husky install"
