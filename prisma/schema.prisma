@@ -16,6 +16,7 @@ model user {
   phone String
   senha String
   pokemons pokemon[]
+  session session?
 
   @@map("users")
 }
@@ -32,4 +33,11 @@ model pokemon {
   user user @relation(fields: [userId], references: [id])
 
   @@map("pokemons")
+}
+
+model session {
+  id Int @id @default(autoincrement())
+  userId Int @unique
+  token String
+  user user @relation(fields: [userId], references: [id])
 }
