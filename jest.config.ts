@@ -6,4 +6,7 @@ module.exports = {
     '.+\\.ts$': 'ts-jest',
   },
   testMatch: ['<rootDir>/tests/*.(test|spec).ts'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
 };

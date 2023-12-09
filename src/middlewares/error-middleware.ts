@@ -16,7 +16,7 @@ export default function errorHandlingMiddleware(
   }
 
   if (error.name === 'Conflict') {
-    return res.status(httpStatus.CONFLICT).send('Conflict');
+    return res.status(httpStatus.CONFLICT).send(error.message);
   }
 
   if (error.name === 'IdNotValidError') {
