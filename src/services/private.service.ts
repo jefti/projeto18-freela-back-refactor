@@ -1,7 +1,8 @@
 import { session } from '@prisma/client';
-import { ConflictError, UnauthorizedError } from '@/errors/router';
+import { ConflictError, UnauthorizedError, notFoundError } from '@/errors/router';
 import { privateRepository } from '@/repositories/private.repository';
 import { postPokemonType } from '@/types/postPokemon';
+import { publicRepository } from '@/repositories/public.repository';
 
 async function getYoursPokemon(userId: number) {
   const list = await privateRepository.selectUserPokemonResume(userId);
@@ -20,6 +21,10 @@ async function postPokemon(userId: number, body: postPokemonType) {
 async function setPokemonAvaliable(id: string, value: string, sessao: session) {
   const formattedId = toNumberOrFail(id);
   const formattedValue = toBooleanOrFail(value);
+  const checkPokemon = await publicRepository.selectPokemonById(formattedId);
+  if (!checkPokemon) throw notFoundError('Não foi encontrado um pokemon com o id informado.');
+  if (checkPokemon.userId != sessao.userId)
+    throw UnauthorizedError('O usuário não pode modificar o pokemon informado.');
   const updatedPokemon = await privateRepository.updateAvaliable(formattedId, sessao.userId, formattedValue);
   return updatedPokemon;
 }
