@@ -22,4 +22,26 @@ async function createSession(session: UserSession) {
   return newSession;
 }
 
-export const authRepository = { findUserByEmail, findUserByCPF, registerUserDB, createSession };
+async function searchSession(token: string) {
+  const findSearch = await prisma.session.findFirst({ where: { token } });
+  return findSearch;
+}
+
+async function findSessionByUser(userId: number) {
+  const findSearch = await prisma.session.findFirst({ where: { userId } });
+  return findSearch;
+}
+
+async function deleteSession(userId: number) {
+  await prisma.session.delete({ where: { userId } });
+}
+
+export const authRepository = {
+  findUserByEmail,
+  findUserByCPF,
+  registerUserDB,
+  createSession,
+  searchSession,
+  deleteSession,
+  findSessionByUser,
+};

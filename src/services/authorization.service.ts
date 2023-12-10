@@ -21,9 +21,15 @@ async function validateLogin(body: UserLogin) {
   const teste = bcrypt.compareSync(body.senha, findUser.senha);
   if (!teste) throw UnauthorizedError('Usuário e/ou senha inválidos');
   delete findUser.senha;
+  const session = await authRepository.findSessionByUser(findUser.id);
+  if (session) return { ...findUser, token: session.token };
   const token = uuid();
   await authRepository.createSession({ token, userId: findUser.id });
   return { ...findUser, token };
+}
+
+async function validateLogout(userId: number) {
+  await authRepository.deleteSession(userId);
 }
 
 function createValidBody(body: postUserType): postUserType {
@@ -32,4 +38,4 @@ function createValidBody(body: postUserType): postUserType {
   return { ...bodyWithouPassword, senha: senhaCriptografada };
 }
 
-export const authService = { registerUser, validateLogin };
+export const authService = { registerUser, validateLogin, validateLogout };

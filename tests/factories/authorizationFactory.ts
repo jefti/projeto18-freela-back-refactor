@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { faker } from '@faker-js/faker';
+import { user } from '@prisma/client';
 import { postUserType } from '@/types/postUser';
 import prisma from '@/database/database';
 
@@ -14,11 +15,17 @@ export function createValidUserBody(): postUserType {
   };
 }
 
-export async function registerUser() {
+export async function registerUser(): Promise<user> {
   const user: postUserType = createValidUserBody();
   const criptUser = createValidPassword(user);
-  await prisma.user.create({ data: criptUser });
-  return user;
+  const createdUser = await prisma.user.create({ data: criptUser });
+  return { ...createdUser, senha: user.senha };
+}
+
+export async function registerUserAndLogin() {
+  const user = await registerUser();
+  const session = await prisma.session.create({ data: { userId: user.id, token: '1234' } });
+  return session;
 }
 
 function fakeNumber() {

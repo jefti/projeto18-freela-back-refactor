@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import supertest from 'supertest';
 import app from '../src/app';
-import { createValidUserBody, registerUser } from './factories/authorizationFactory';
+import { createValidUserBody, registerUser, registerUserAndLogin } from './factories/authorizationFactory';
 import { cleanDB } from './factories/cleanDB';
 
 const api = supertest(app);
@@ -21,7 +21,7 @@ describe('Route /Registro', () => {
   it('Should has sucess if the user send the correct body.', async () => {
     const user = createValidUserBody();
     const { body, status } = await api.post('/registro').send(user);
-    expect(status).toBe(httpStatus.OK);
+    expect(status).toBe(httpStatus.CREATED);
     expect(body).toEqual(
       expect.objectContaining({
         id: expect.any(Number),
@@ -57,5 +57,18 @@ describe('Route /login', () => {
         token: expect.any(String),
       }),
     );
+  });
+});
+
+describe('Route /login', () => {
+  it('Should fail if the user dont send the token.', async () => {
+    const { text, status } = await api.post('/logout');
+    expect(status).toBe(httpStatus.UNAUTHORIZED);
+    expect(text).toBe('Necessário token de validação.');
+  });
+  it('Should has sucess if the user send valid informations.', async () => {
+    const session = await registerUserAndLogin();
+    const { status } = await api.post('/logout').set('Authorization', `Bearer ${session.token}`);
+    expect(status).toBe(httpStatus.NO_CONTENT);
   });
 });
