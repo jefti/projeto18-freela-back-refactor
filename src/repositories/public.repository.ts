@@ -1,7 +1,7 @@
 import prisma from '@/database/database';
 
 async function selectAllPokemon() {
-  const resp = await prisma.pokemon.findMany({ select: { user: true } });
+  const resp = await prisma.pokemon.findMany({ where: { disponivel: true }, select: { user: true }, take: 20 });
   return resp;
 }
 
