@@ -23,6 +23,7 @@ model user {
 
 model pokemon {
   id   Int    @id @default(autoincrement())
+  nome String
   descricao String
   diaria Int
   especie String

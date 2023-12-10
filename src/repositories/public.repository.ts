@@ -10,4 +10,18 @@ async function selectPokemonById(id: number) {
   return resp;
 }
 
-export const publicRepository = { selectAllPokemon, selectPokemonById };
+async function selectPokemonByAny(search: string) {
+  const resp = await prisma.pokemon.findMany({
+    where: {
+      disponivel: true,
+      OR: [{ especie: { contains: search.toLowerCase() } }, { nome: { contains: search.toLocaleLowerCase() } }],
+    },
+    select: {
+      user: true,
+    },
+    take: 20,
+  });
+  return resp;
+}
+
+export const publicRepository = { selectAllPokemon, selectPokemonById, selectPokemonByAny };

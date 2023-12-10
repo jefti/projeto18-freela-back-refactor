@@ -13,5 +13,7 @@ export async function getPokemonById(req: Request, res: Response) {
 }
 
 export async function getPokemonByAny(req: Request, res: Response) {
-  res.send('Em construção!');
+  const { key } = req.params;
+  const lista = await publicService.getPokemonByAny(key);
+  return res.send(lista);
 }

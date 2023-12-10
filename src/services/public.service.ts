@@ -15,4 +15,9 @@ async function getPokemonById(id: string) {
   return search;
 }
 
-export const publicService = { getPokemonList, getPokemonById };
+async function getPokemonByAny(key: string) {
+  const resp = await publicRepository.selectPokemonByAny(key);
+  return resp;
+}
+
+export const publicService = { getPokemonList, getPokemonById, getPokemonByAny };
