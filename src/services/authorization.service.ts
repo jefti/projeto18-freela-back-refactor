@@ -1,9 +1,8 @@
 import bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
-import { ConflictError } from '@/errors/conflictError';
+import { ConflictError, UnauthorizedError } from '@/errors/router';
 import { authRepository } from '@/repositories/authorization.repository';
 import { UserLogin, postUserType } from '@/types/postUser';
-import { UnauthorizedError } from '@/errors/unauthorizedError';
 
 async function registerUser(body: postUserType) {
   const checkEmail = await authRepository.findUserByEmail(body.email);
