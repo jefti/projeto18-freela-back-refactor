@@ -6,8 +6,8 @@ import { PokemonSchema } from '@/schemas/pokemonSchema';
 
 const privateRouter = Router();
 privateRouter.use(validateToken);
-privateRouter.get('/yoursPokemons', getYoursPokemon);
-privateRouter.get('/allYoursPokemons', getAllYoursPokemon);
-privateRouter.post('/pokemon', validateSchemaMiddleware(PokemonSchema), postPokemon);
-privateRouter.put('/setAvaliable/:id/:value', setAvaliable);
+privateRouter.get('/user/Pokemons/resume', getYoursPokemon);
+privateRouter.get('/user/pokemons/all', getAllYoursPokemon);
+privateRouter.post('/user/pokemon', validateSchemaMiddleware(PokemonSchema), postPokemon);
+privateRouter.put('/pokemon/:id/:value', setAvaliable);
 export default privateRouter;
