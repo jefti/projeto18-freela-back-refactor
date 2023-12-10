@@ -22,7 +22,9 @@ export default function errorHandlingMiddleware(
   if (error.name === 'IdNotValidError') {
     return res.status(httpStatus.BAD_REQUEST).send(error.message);
   }
-
+  if (error.name === 'Unauthorized') {
+    return res.status(httpStatus.UNAUTHORIZED).send(error.message);
+  }
   console.log(error);
   return res.status(httpStatus.INTERNAL_SERVER_ERROR);
 }

@@ -1,5 +1,5 @@
 import prisma from '@/database/database';
-import { postUserType } from '@/types/postUser';
+import { UserSession, postUserType } from '@/types/postUser';
 
 async function findUserByEmail(email: string) {
   const resp = await prisma.user.findFirst({ where: { email } });
@@ -17,4 +17,9 @@ async function registerUserDB(body: postUserType) {
   return newUser;
 }
 
-export const authRepository = { findUserByEmail, findUserByCPF, registerUserDB };
+async function createSession(session: UserSession) {
+  const newSession = await prisma.session.create({ data: session });
+  return newSession;
+}
+
+export const authRepository = { findUserByEmail, findUserByCPF, registerUserDB, createSession };
