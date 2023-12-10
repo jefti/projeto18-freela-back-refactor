@@ -8,8 +8,11 @@ export async function getYoursPokemon(req: Request, res: Response) {
   res.send(resp);
 }
 export async function getAllYoursPokemon(req: Request, res: Response) {
-  res.send('Em construção!');
+  const sessao = res.locals.user as session;
+  const resp = await privateService.getAllUserPokemon(sessao.userId);
+  res.send(resp);
 }
+
 export async function createPokemon(req: Request, res: Response) {
   res.send('Em construção!');
 }

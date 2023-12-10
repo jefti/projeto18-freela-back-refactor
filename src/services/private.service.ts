@@ -5,4 +5,9 @@ async function getYoursPokemon(userId: number) {
   return list;
 }
 
-export const privateService = { getYoursPokemon };
+async function getAllUserPokemon(userId: number) {
+  const list = await PrivateRepository.SelectAllUserPokemon(userId);
+  return list;
+}
+
+export const privateService = { getYoursPokemon, getAllUserPokemon };

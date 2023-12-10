@@ -5,4 +5,9 @@ async function SelectUserPokemonResume(userId: number) {
   return list;
 }
 
-export const PrivateRepository = { SelectUserPokemonResume };
+async function SelectAllUserPokemon(userId: number) {
+  const list = await prisma.pokemon.findMany({ where: { userId } });
+  return list;
+}
+
+export const PrivateRepository = { SelectUserPokemonResume, SelectAllUserPokemon };
