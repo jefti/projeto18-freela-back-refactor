@@ -7,7 +7,9 @@ export async function getHomeList(req: Request, res: Response) {
 }
 
 export async function getPokemonById(req: Request, res: Response) {
-  res.send('Em construção!');
+  const { id } = req.params;
+  const resp = await publicService.getPokemonById(id);
+  res.send(resp);
 }
 
 export async function getPokemonByAny(req: Request, res: Response) {
