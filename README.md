@@ -30,7 +30,7 @@
     </td>
     <td align="center">
       <a href="https://nodejs.org/en/about">
-        <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--gjboKZlh--/c_imagga_scale,f_auto,fl_progressive,h_1080,q_auto,w_1080/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1crd9guwakabciqtt6e3.png" width="100px;" alt="Foto do Iuri Silva no GitHub"/><br>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz3n-MStZVnTpENk_bOz2w_9POCYmYs88NSg&s" width="100px;" alt="Foto do Iuri Silva no GitHub"/><br>
         <sub>
           <b>Node.js + Express</b>
         </sub>
@@ -54,7 +54,7 @@
     </td>
         <td align="center">
       <a href="https://jestjs.io/pt-BR/help">
-        <img src="https://viget.imgix.net/jest.png?auto=format%2Ccompress&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&ixlib=php-3.3.1&q=90&s=a6c20876868af5a7f83241353efc2495" width="100px;" alt="Ícone Jest"/><br>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEZWil3CMPi_oxEgTaf16tBnG9ZobYXWk06w&s" width="100px;" alt="Ícone Jest"/><br>
         <sub>
           <b>Jest</b>
         </sub>
